@@ -29,7 +29,6 @@
 <input type="text" placeholder="Ortsteil" id="Ortsteil"><br>
 <input type="text" placeholder="Stichwort" id="Stichwort"><br>
 <input type="text" placeholder="Einsatzinformation" id="Einsatzinformation"><br>
-<input type="text" id=""><br>
 <button id="submit">Senden</button>
 <script>
 const loggedinPilots = document.getElementById("loggedinPilots")

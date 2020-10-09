@@ -1,3 +1,7 @@
+@font-face { 
+  font-family: "MelderFont"; 
+  src: url("/media/MelderV2.ttf"); 
+  }
 :root {
   --maxHeight: calc(100% - 80px);
 }
@@ -34,8 +38,8 @@
   position: absolute;
   left: 0;
   height: calc(100% - 80px);
-  width: 50%;
-  max-width: 50%;
+  width: 100%;
+  max-width: 100%;
 }
 .pilot {
   position: relative;
@@ -62,7 +66,7 @@
 .right {
   position: absolute;
   right: 0px;
-  width: 50%;
+  width: 0%;
   height: var(--maxHeight);
 }
 #overlay {
@@ -135,22 +139,21 @@
   visibility: visible;
 }
 .melder{
-    position: relative;
+  position: absolute;
+    padding: 0px;
     margin-top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 366px;
-    height: 512px;
     display: grid;
     grid-template-columns: 18% 6% 21% 19% 11% 9% 16%;
     grid-template-rows: 20% 28% 13% 6% 7% 1.5% 24.5%;
     gap: 0px 0px;
 }
-.melderImg{
-    width: 100%;
-}
-.Display { 
-    grid-area: 2 / 2 / 3 / 7; 
+
+.melder_Img{
+    width: 500px;
+    margin: 0px;
+    padding: 0px;
 }
 .RedButton { 
     grid-area: 4 / 3 / 7 / 4; 
@@ -163,10 +166,10 @@
     cursor: pointer;
     border: none;
 }
-.GreyButton {
+.greyUp {
     grid-area: 5 / 5 / 6 / 6;
  }
- .GreyButton button{
+ .greyUp button{
     width: 100%;
     height: 100%;
     border-radius: 100%;
@@ -181,3 +184,132 @@
   top: 0px;
   right: 0px;
  }
+.Display{
+  font-family: MelderFont;
+  grid-area: 2 / 2 / 3 / 7; 
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;  
+}
+.row1col1{
+  grid-area: 1 / 1 / 2 / 2;
+  position: relative; 
+}
+.row1col2{
+  grid-area: 1 / 2 / 2 / 3;
+  position: relative; 
+}
+.row2col1{
+  grid-area: 2 / 1 / 3 / 2;
+  position: relative; 
+}
+.row2col2{
+  grid-area: 2 / 2 / 3 / 3;
+  position: relative; 
+}
+.row3col1{
+  grid-area: 3 / 1 / 4 / 2;
+  position: relative; 
+}
+.row3col2{
+  grid-area: 3 / 2 / 4 / 3;
+  position: relative; 
+}
+.row4col1{
+  grid-area: 4 / 1 / 5 / 2;
+  position: relative; 
+}
+.row4col2{
+  grid-area: 4 / 2 / 5 / 3;
+  position: relative;
+}
+
+.displayText1{
+  text-align: left;
+  left: 0px;
+  font-family: MelderFont;
+  font-size: 25px;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  left: 0px;
+}
+
+.displayText2{
+  text-align: right;
+  font-family: MelderFont;
+  font-size: 25px;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  right: 0px;
+}
+.displayText3{
+  text-align: left;
+  left: 0px;
+  font-family: MelderFont;
+  font-size: 25px;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  left: 0px;
+}
+
+.displayText4{
+  text-align: right;
+  font-family: MelderFont;
+  font-size: 25px;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  right: 0px;
+}
+.displayText5{
+  text-align: left;
+  left: 0px;
+  font-family: MelderFont;
+  font-size: 25px;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  left: 0px;
+}
+.displayText6{
+  text-align: right;
+  left: 0px;
+  font-family: MelderFont;
+  font-size: 25px;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  right: 0px;
+}
+
+.displayText7{
+  text-align: left;
+  font-family: MelderFont;
+  font-size: 25px;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  left: 0px;
+}
+.displayText8{
+  text-align: right;
+  font-family: MelderFont;
+  font-size: 25px;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  right: 0px;
+}
+.displayText2.idle{
+  transform: rotate(90deg);
+  bottom: auto;
+  font-weight: 900px;
+  font-size: larger;
+}
+.displayText2.width{
+  grid-area: 2 / 1 / 3 / 3;
+}
