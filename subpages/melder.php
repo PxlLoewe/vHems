@@ -1,61 +1,31 @@
-<?php
-$db = new mysqli("185.248.140.14","Test","test","mysqlcshap");
-if($db->connect_error){
-    echo $db->connect_error;
-}
-?>
-
-<html>
+<body>
     <head>
-    <link rel="stylesheet" href="/subpages/css/pilot.css">
-    <script src="/subpages/JS/notify.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/subpages/css/melder.css">
+        <script src="/subpages/JS/notify.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js" integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg==" crossorigin="anonymous"></script>
+    
 </head>
-
-<div id="overlay" class="active"></div>
-<div id="auswahl-box", class="active">
-    <select name="activeFahrzeug" id="activeFahrzeuge">
-    <?php
-        $stmt = $db->query("SELECT * FROM Fahrzeugliste ORDER BY id ASC");
-        ?>
-        <option>Bitte Wähle dein Fahrzeug aus der Liste aus</option>
-        <?php
-        while($Fahrzeuge = $stmt->fetch_object()) { ?>
-        <option><?php echo $Fahrzeuge->Fahrzeuge ?></option>
-        <?php } ?>
-        ?>
-    </select><br>
-    <input id="discordAlarmierung" type="checkbox" name="discordAlamierung" value="discordCheck" checked>
-  <label for="discordCheck">Möchtest du auf Discord Alamiert werden?</label><br><br>
-    <button id="selectActive">bestätigen</button>
-</div>
-<div class="left">
-    <div id="eingelogtPilot" class="Pilot"></div>
-    <span id="connWarning" class="material-icons show">signal_cellular_connected_no_internet_4_bar</span>
-<!-- Hier wird die Alamierung angezeigt!   -->
     <div class="melder">
-        <img class="melder_Img" src="/subpages/media/melder.png">
-        <div id="display" class="Display">
-            <div id="row1col1" class="row1col1"><div id="displayText1" class="displayText1"></div></div>
-            <div id="row1col2" class="row1col2"><div id="displayText2" class="displayText2"></div></div>
-            <div id="row2col1" class="row2col1"><div id="displayText3" class="displayText3"></div></div>
-            <div id="row2col2" class="row2col2"><div id="displayText4" class="displayText4"></div></div>
-            <div id="row3col1" class="row3col1"><div id="displayText5" class="displayText5"></div></div>
-            <div id="row3col2" class="row3col2"><div id="displayText6" class="displayText6"></div></div>
-            <div id="row4col1" class="row4col1"><div id="displayText7" class="displayText7"></div></div>
-            <div id="row4col2" class="row4col2"><div id="displayText8" class="displayText8"></div></div>
+            <img class="melder_Img" src="/subpages/media/melder.png">
+            <div id="display" class="Display">
+                <div id="row1col1" class="row1col1"><div id="displayText1" class="displayText1"></div></div>
+                <div id="row1col2" class="row1col2"><div id="displayText2" class="displayText2"></div></div>
+                <div id="row2col1" class="row2col1"><div id="displayText3" class="displayText3"></div></div>
+                <div id="row2col2" class="row2col2"><div id="displayText4" class="displayText4"></div></div>
+                <div id="row3col1" class="row3col1"><div id="displayText5" class="displayText5"></div></div>
+                <div id="row3col2" class="row3col2"><div id="displayText6" class="displayText6"></div></div>
+                <div id="row4col1" class="row4col1"><div id="displayText7" class="displayText7"></div></div>
+                <div id="row4col2" class="row4col2"><div id="displayText8" class="displayText8"></div></div>
+            </div>
+            <div class="RedButton">
+                <button id="redButton"></button>
+            </div>
+            <div class="greyUp">
+                <button id="greyUp"></button>
+            </div>
         </div>
-        <div class="RedButton">
-            <button id="redButton"></button>
-        </div>
-        <div class="greyUp">
-            <button id="greyUp"></button>
-        </div>
-    </div>
-</div>
-<iframe class="right" src="https://rescuetrack.pxlloewe.de" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
+</body>
 <script>
     const redButton = document.getElementById("redButton");
     const greyUp = document.getElementById("greyUp");
@@ -64,7 +34,6 @@ if($db->connect_error){
     const selectedFahrzeug = document.getElementById("activeFahrzeuge");
     const selectedFahrzeugButton = document.getElementById("selectActive");
     const eingelogtPilot = document.getElementById("eingelogtPilot");
-    const connWarning = document.getElementById("connWarning");
     const openMelder = document.getElementById("openMelder");
     const display = {
         row1col1:   document.getElementById("row1col1"),
@@ -199,7 +168,6 @@ if($db->connect_error){
     });
     socket.on("disconnect", () => {
         notifi.show("Die Verbindung zum Server wurde unterbrochen!", "red")
-        connWarning.style.color = "rgba(255, 0, 0, 1)";
         melderConnWarning = setInterval(() => {
             var an;
             if(an == 1){
@@ -211,20 +179,13 @@ if($db->connect_error){
             }
         }, 1000)
     })
-    selectedFahrzeugButton.addEventListener("click", function(io) {
-        console.log(selectedFahrzeug.value, "wurde ausgewählt")
-        auswahlBox.classList.remove("active");
-        overlay.classList.remove("active");
-        eingelogtPilot.innerHTML = selectedFahrzeug.value;
         Display.Idle();
         socket.emit("newPilot", {
             realName: "<?php echo $user->vorname; ?>",
-            station: selectedFahrzeug.value,
-            popup: false,
-            discordId: "<?php echo $user->discordId; ?>",
-            discordAlarmierung: document.getElementById("discordAlarmierung").checked
-        })
-    });
+            station: "<?php echo $_GET['station'];?>",
+            popup: true,
+        });
+
     greyUp.addEventListener("mousedown", () => {
         if(Display.showing == "alerted"){
             Display.Idle()
@@ -246,10 +207,6 @@ if($db->connect_error){
     redButton.addEventListener("mouseup", () => {
         clearTimeout(redButtonTimeout)
     })
-//    openMelder.addEventListener("click", () => {
-//        window.open(`https://vhems.pxlloewe.de/openInNew.php?form=melder&station=${selectedFahrzeug.value}`);
-//    })
-
     socket.on("alamierung", function(data) {
         Display.Alamierung(data)
     })
@@ -258,17 +215,6 @@ if($db->connect_error){
         if (data.message == "Du bist mit dem Server verbunden!") {
             clearInterval(melderConnWarning)
             console.log("connected")
-            connWarning.style.color = "rgba(255, 0, 0, 0)";
-            if(eingelogtPilot.innerHTML != ""){
-                socket.emit("newPilot", {
-                    realName: "<?php echo $user->vorname; ?>",
-                    station: selectedFahrzeug.value,
-                    popup: false,
-                    discordId: "<?php echo $user->discordId; ?>",
-                    discordAlarmierung: document.getElementById("discordAlarmierung").checked
-                })
-            }
         }
     })
 </script>
-</html>

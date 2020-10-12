@@ -5,7 +5,6 @@ const notifi = {
         this.el = document.createElement("div");
         this.el.className = "notifi";
         document.body.appendChild(this.el);
-
     },
     show(message, state) {
         clearTimeout(this.hideTimeout);

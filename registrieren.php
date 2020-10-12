@@ -8,6 +8,7 @@ if(isset($_POST['absenden'])):
 
   $name = $_POST['vorname'];
   $nachname = $_POST['nachname'];
+  $discordID = $_POST['discordID'];
   $mail = $_POST['mail'];
   $passwort = $_POST['passwort'];
   $passwort_wiederholen = $_POST['passwort_wiederholen'];
@@ -22,8 +23,8 @@ if(isset($_POST['absenden'])):
     $search_result = $search_user->get_result();
     if ($search_result->num_rows == 0):
         $passwort = md5($passwort);
-        $eintrag_verzeichniss = $db->prepare("INSERT INTO users (email,vorname,nachname,password,dispo,pilot,created_at,lastLogin_at) VALUES (?,?,?,?,?,?,?,?)");
-        $eintrag_verzeichniss->bind_param('ssssiiii',$mail,$name,$nachname,$passwort,$zero,$zero,$time,$leer);
+        $eintrag_verzeichniss = $db->prepare("INSERT INTO users (vorname,nachname,email,discordId,password,dispo,pilot,created_at,lastLogin_at) VALUES (?,?,?,?,?,?,?,?,?)");
+        $eintrag_verzeichniss->bind_param('sssisiiii',$name,$nachname,$mail,$discordID,$passwort,$zero,$zero,$time,$leer);
         $eintrag_verzeichniss->execute();
             if($insert !== false):
             $response_good = "Account erfolgreich erstellt!<br>";
@@ -43,6 +44,7 @@ endif;
                 <div class="outer"><input class="input-field" type="text" name="vorname" pattern="[^'\x22]+" placeholder="Vorname"></div><br>
                 <div class="outer"><input class="input-field" type="text" name="nachname" placeholder="Nachname"></div><br>
                 <div class="outer"><input class="input-field" type="text" name="mail" placeholder="E-Mail Addresse"></div><br>
+                <div class="outer"><input class="input-field" type="text" name="discordID" placeholder="Discord ID"></div><br>
                 <div class="outer"><input class="input-field" type="password" name="passwort" placeholder="Passwort"></div><br>
                 <div class="outer"><input class="input-field" type="password" name="passwort_wiederholen" placeholder="Passwort"></div><br>
                 <input class="submit-btn" type="submit" name="absenden" value="REGISTRIEREN"><br>
