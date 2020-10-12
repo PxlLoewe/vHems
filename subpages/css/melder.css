@@ -1,6 +1,6 @@
 @font-face { 
   font-family: "MelderFont"; 
-  src: url("media/MelderV2.ttf"); 
+  src: url("/media/MelderV2.ttf"); 
   }
 :root {
   --maxHeight: calc(100% - 80px);
@@ -8,108 +8,9 @@
 * {
   font-family: sans-serif;
 }
-.material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;  /* Preferred icon size */
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-  
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-  
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-  
-    /* Support for IE. */
-    font-feature-settings: 'liga';
-  }
-.left {
-  background-color: rgb(32, 43, 60);
-  border: none;
-  position: absolute;
-  left: 0;
-  height: calc(100% - 80px);
-  width: 60%;
-  max-width: 100%;
+body{
+  background-color: rgb(32, 43, 60)
 }
-.right {
-  position: absolute;
-  right: 0px;
-  width: 40%;
-  height: var(--maxHeight);
-}
-.pilot {
-  position: relative;
-  height: 30px;
-  left: 50%;
-  padding: 3px;
-  font-size: 20px;
-  border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;
-  transform: translateX(-50%);
-  background-color: rgb(89, 120, 187);
-  text-align: center;
-  width: 30%;
-}
-#connwarning{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 30px;
-    margin: 3px;
-    transition: 200ms;
-    color: rgba(255, 0, 0, 0);
-}
-#overlay {
-  z-index: 5;
-  position: absolute;
-  width: 100%;
-  pointer-events: none;
-  height: var(--maxHeight);
-  background-color: rgba(0, 0, 0, 0);
-  transition: 500ms;
-}
-#overlay.active {
-  background-color: rgba(0, 0, 0, 0.1);
-  pointer-events: stroke;
-  position: absolute;
-}
-#auswahl-box {
-  position: absolute;
-  display: none;
-  z-index: 10;
-  top: 50%;
-  left: -200px;
-  padding: 20px;
-  transform: translate(-50%, -50%);
-  background-color: rgba(36, 138, 138, 0);
-  transition: 500ms;
-}
-#auswahl select {
-  margin: 5px;
-  padding: 3px;
-  font-size: 15px;
-}
-#auswahl-box.active {
-  left: 50%;
-  display: block;
-  position: absolute;
-  z-index: 10;
-  padding: 20px;
-  border-radius: 10px;
-  transform: translate(-50%, -50%);
-  background-color: rgba(36, 138, 138, 1);
-}
-
 .notifi {
   z-index: 11;
   position: fixed;
@@ -138,48 +39,45 @@
   opacity: 1;
   visibility: visible;
 }
+/*Hier wird alles wichtige für den Melder reingebaut!*/
 .melder{
-    position: relative;
-    margin-top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 366px;
-    height: 512px;
+    height: 95%;
+    position: absolute;
     display: grid;
     grid-template-columns: 18% 6% 21% 19% 11% 9% 16%;
     grid-template-rows: 20% 28% 13% 6% 7% 1.5% 24.5%;
     gap: 0px 0px;
 }
-.melderImg{
-    width: 100%;
-}
-.Display { 
-    grid-area: 2 / 2 / 3 / 7; 
+.melder_Img{
+    height: 100%;
+    grid-area: 1 / 1 / 8 / 8;
+    margin: 0px;
+    padding: 0px;
 }
 .RedButton { 
-    grid-area: 4 / 3 / 7 / 4; 
+  grid-area: 4 / 3 / 7 / 4; 
 }
 .RedButton button{
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    border: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  border: none;
 }
-.GreyButton {
-    grid-area: 5 / 5 / 6 / 6;
+.greyUp {
+  grid-area: 5 / 5 / 6 / 6;
  }
- .GreyButton button{
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    border: none;
+ .greyUp button{
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  border: none;
  }
  .openInNew{
-   cursor: pointer;
+  cursor: pointer;
   grid-area: 1 / 7 / 2 / 8;
   color:rgba(64, 117, 191, 1);
   top: 0px;
