@@ -1,6 +1,6 @@
 const notifi = {
     init() {
-        this.hideTimegout = null;
+        this.hideTimeout = null;
 
         this.el = document.createElement("div");
         this.el.className = "notifi";
@@ -14,7 +14,7 @@ const notifi = {
         if(state){
             this.el.classList.add(`notifi-${state}`);
         }
-        this.hideTimegout = setTimeout(() => {
+        this.hideTimeout = setTimeout(() => {
             this.el.classList.remove("notifi--visible");
         }, 3000);
     }

@@ -1,0 +1,114 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: rgb(32, 43, 60);
+}
+.notifi {
+  z-index: 11;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 400;
+  padding: 6px;
+  font-family: sans-serif;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: rgb(255, 255, 0);
+  visibility: hidden;
+  opacity: 0;
+  transition: 200ms;
+}
+.notifi-green {
+  background-color: rgba(62, 219, 0, 1);
+}
+.notifi-red {
+  background-color: rgba(197, 52, 0, 1);
+}
+.notifi--visible {
+  top: 100px;
+  opacity: 1;
+  visibility: visible;
+}
+.FME {
+  position: absolute;
+  height: 95%;
+  display: grid;
+  grid-template-columns: 22% 2% 14% 2% 14% 5% 15% 5% 16% 20%;
+  grid-template-rows: 9% 12% 3% 26% 4% 1% 4% 1% 4% 2% 4% 30%;
+  gap: 0px 0px;
+}
+.FME img {
+  grid-area: 1 / 1 / 13 / 11;
+  height: 100%;
+}
+.displayFMEupper {
+  text-align: right;
+  grid-area: 2 / 3 / 3 / 8;
+  font-size: 11vh;
+  font-family: sans-serif;
+}
+.displayFMElower {
+  grid-area: 3 / 3 / 4 / 8;
+}
+.FMEkey1 {
+  grid-area: 5 / 2 / 5 / 4;
+  width: 100%;
+  height: 100%;
+}
+.FMEkey2 {
+  grid-area: 5 / 5 / 5 / 6;
+  width: 100%;
+  height: 100%;
+}
+.FMEkey3 {
+  grid-area: 5 / 7 / 5 / 8;
+  width: 100%;
+  height: 100%;
+}
+.FMEkey4 {
+  grid-area: 7 / 2 / 7 / 4;
+  width: 100%;
+  height: 100%;
+}
+.FMEkey5 {
+  grid-area: 7 / 5 / 7 / 6;
+  width: 100%;
+  height: 100%;
+}
+.FMEkey6 {
+  grid-area: 7 / 7 / 7 / 8;
+  width: 100%;
+  height: 100%;
+}
+.FMEkey7 {
+  grid-area: 9 / 2 / 9 / 4;
+  width: 100%;
+  height: 100%;
+}
+.FMEkey8 {
+  grid-area: 9 / 5 / 9 / 6;
+  width: 100%;
+  height: 100%;
+}
+.FMEkey9 {
+  grid-area: 9 / 7 / 9 / 8;
+  width: 100%;
+  height: 100%;
+}
+.FMEkey0 {
+  grid-area: 11 / 5 / 11 / 6;
+  width: 100%;
+  height: 100%;
+}
+.FMEkeyButton {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  height: 100%;
+  width: 100%;
+}

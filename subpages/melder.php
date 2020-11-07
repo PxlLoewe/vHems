@@ -1,12 +1,12 @@
 <body>
     <head>
+        <title>Melder</title>
         <link rel="stylesheet" href="/subpages/css/melder.css">
         <script src="/subpages/JS/notify.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js" integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg==" crossorigin="anonymous"></script>
-    
 </head>
-    <div class="melder">
+    <div id="melder" class="melder">
             <img class="melder_Img" src="/subpages/media/melder.png">
             <div id="display" class="Display">
                 <div id="row1col1" class="row1col1"><div id="displayText1" class="displayText1"></div></div>
@@ -34,6 +34,7 @@
     const selectedFahrzeug = document.getElementById("activeFahrzeuge");
     const selectedFahrzeugButton = document.getElementById("selectActive");
     const eingelogtPilot = document.getElementById("eingelogtPilot");
+    const connWarning = document.getElementById("connWarning");
     const openMelder = document.getElementById("openMelder");
     const display = {
         row1col1:   document.getElementById("row1col1"),
@@ -179,14 +180,11 @@
             }
         }, 1000)
     })
-        Display.Idle();
-        socket.emit("newPilot", {
-            realName: "<?php echo $user->vorname; ?>",
-            station: "<?php echo $_GET['station'];?>",
-            popup: true,
-        });
 
-    greyUp.addEventListener("mousedown", () => {
+    // Login als Pilot:
+        Display.Idle();
+    
+        greyUp.addEventListener("mousedown", () => {
         if(Display.showing == "alerted"){
             Display.Idle()
             AlamierungSound.pause();
@@ -207,14 +205,21 @@
     redButton.addEventListener("mouseup", () => {
         clearTimeout(redButtonTimeout)
     })
+
     socket.on("alamierung", function(data) {
         Display.Alamierung(data)
     })
-    socket.on("nofifi", function(data) {
+    socket.on("notifi", function(data) {
         notifi.show(data.message, "green")
         if (data.message == "Du bist mit dem Server verbunden!") {
             clearInterval(melderConnWarning)
             console.log("connected")
+                socket.emit("newPilot", {
+                    userID: "<?php echo $_GET["userId"];?>",
+                    station: "<?php echo $_GET["station"];?>",
+                    popup: true,
+                    discordAlarmierung: "<?php echo $_GET["dcAlarmierung"];?>"
+                })
         }
     })
 </script>

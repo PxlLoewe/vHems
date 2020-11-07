@@ -1,6 +1,6 @@
 @font-face { 
   font-family: "MelderFont"; 
-  src: url("/media/MelderV2.ttf"); 
+  src: url("/subpages/media/VCR_OSD_MONO_1.001.ttf"); 
   }
 :root {
   --maxHeight: calc(100% - 80px);
@@ -139,7 +139,7 @@ body{
 .displayText1{
   text-align: left;
   font-family: MelderFont;
-  font-size: 25px;
+  font-size: 3.5vh;
   -webkit-transform:scale(1,1.8);
   position: absolute;
   bottom: 6px;
@@ -149,7 +149,7 @@ body{
 .displayText2{
   text-align: right;
   font-family: MelderFont;
-  font-size: 25px;
+  font-size: 3.5vh;
   -webkit-transform:scale(1,1.8);
   position: absolute;
   bottom: 6px;
@@ -158,7 +158,7 @@ body{
 .displayText3{
   text-align: left;
   font-family: MelderFont;
-  font-size: 25px;
+  font-size: 3.5vh;
   -webkit-transform:scale(1,1.8);
   position: absolute;
   bottom: 6px;
@@ -167,7 +167,7 @@ body{
 .displayText4{
   text-align: right;
   font-family: MelderFont;
-  font-size: 25px;
+  font-size: 3.5vh;
   -webkit-transform:scale(1,1.8);
   position: absolute;
   bottom: 6px;
@@ -177,7 +177,7 @@ body{
   text-align: left;
   left: 0px;
   font-family: MelderFont;
-  font-size: 25px;
+  font-size: 3.5vh;
   -webkit-transform:scale(1,1.8);
   position: absolute;
   bottom: 6px;
@@ -187,7 +187,7 @@ body{
   text-align: right;
   left: 0px;
   font-family: MelderFont;
-  font-size: 25px;
+  font-size: 3.5vh;
   -webkit-transform:scale(1,1.8);
   position: absolute;
   bottom: 6px;
@@ -197,7 +197,7 @@ body{
 .displayText7{
   text-align: left;
   font-family: MelderFont;
-  font-size: 25px;
+  font-size: 3.5vh;
   -webkit-transform:scale(1,1.8);
   position: absolute;
   bottom: 6px;
@@ -206,7 +206,7 @@ body{
 .displayText8{
   text-align: right;
   font-family: MelderFont;
-  font-size: 25px;
+  font-size: 3.5vh;
   -webkit-transform:scale(1,1.8);
   position: absolute;
   bottom: 6px;
@@ -226,21 +226,22 @@ body{
 }
 .connectionIndicator{
   margin: 2px;
-  height: 80%;
-  width: 45px;
+  height: 75%;
+  width: 32%;
   position: relative;
   visibility: hidden;
-}
-.connectionIndicator.active{
+  }
+  .connectionIndicator.active{
   visibility: visible;
-}
-.speaker{
+  }
+  .speaker{
   margin: 2px;
-  height: 80%;
-  width: 30px;
+  height: 75%;
+  width: 25%;
   position: relative;
-}
-.battery{
+  }
+  .battery{
   margin: 2px;
-  height: 20px;
-}
+  height: 100%;
+  width: 40%;
+  }
