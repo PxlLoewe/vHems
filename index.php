@@ -8,4 +8,3 @@ if (isset($_SESSION['userID'])):
   else:
   require_once 'anmelden.php';
 endif;
-?>
