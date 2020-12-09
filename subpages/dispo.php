@@ -19,7 +19,7 @@
             <div class="Patient"></div>
             <div class="Anrufer"></div>
             <div class="Stichwort"><input maxlength="22" type="text" placeholder="Stichwort" id="Stichwort"></div>
-            <div class="Infos"><input maxlength="22" type="text" placeholder="Einsatzinformation" id="Einsatzinformation"></div>
+            <div class="Infos"><input maxlength="150" type="text" placeholder="Einsatzinformation" id="Einsatzinformation"></div>
             <div class="Zusatz"></div>
 
             <div class="Fahrzeug">

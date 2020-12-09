@@ -298,6 +298,7 @@
 }
 .row4col1.width {
   grid-area: 4 / 1 / 5 / 3;
+  overflow: hidden;
 }
 .row4col2 {
   grid-area: 4 / 2 / 5 / 3;
