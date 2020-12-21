@@ -180,14 +180,14 @@ input:-webkit-autofill:active  {
   color: #fff;
   cursor: pointer;
   height: 28px;
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid rgb(255, 255, 255);
+  border: 2px solid #4AB8D0;
+  background-color:rgb(29, 38, 54);
 }
 .select option{
   height: 10px;
   color: #fff;
   height: 28px;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(29, 38, 54);
 }
 .Datum {
   grid-area: 1 / 1 / 2 / 2;
