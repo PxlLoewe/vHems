@@ -31,7 +31,7 @@ if ($result->num_rows == 0) {
             <h1>Verification</h1>
             <h3>Das vHEMS Leitstellen System</h3>
         </div>
-        <div class="beschreibung">Dir wurde per Discord ein Verifizierungscode gesendet. Bitte gib ihn nun unten ein. Falls du keinen Code bekommen hast, stelle sicher dass du auf dem <a class="link" href="https://discord.gg/TaSP35f">vHEMS Discord Server</a> bist. Ist deine ID falsch, kannst du sie <a class="link" href="changeDcID.php?id=<?php echo $_GET["id"]; ?>">hier</a> ändern.</div><input class="input-field" id="code" type="text" placeholder="Code"><br><input class="submit-btn" id="submit" type="submit" value="Verifizieren"><br>
+        <div class="beschreibung">Dir wurde per Discord ein Verifizierungscode gesendet. Bitte gebe den Code nun unten ein. Falls du keinen Code bekommen hast, stelle sicher dass du auf dem <a class="link" href="https://discord.gg/TaSP35f">vHEMS Discord Server</a> bist. Ist deine ID falsch, kannst du sie <a class="link" href="changeDcID.php?id=<?php echo $_GET["id"]; ?>">hier</a> ändern.</div><input class="input-field" id="code" type="text" placeholder="Code"><br><input class="submit-btn" id="submit" type="submit" value="Verifizieren"><br>
         <div class="response_ng" id="res_ng"></div>
         <div class="response_g" id="res_g"></div>
     </div>
