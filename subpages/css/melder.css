@@ -1,0 +1,248 @@
+@font-face { 
+  font-family: "MelderFont"; 
+  src: url("/subpages/media/VCR_OSD_MONO_1.001.ttf"); 
+  }
+:root {
+  --maxHeight: calc(100% - 80px);
+}
+* {
+  font-family: sans-serif;
+  overflow: hidden;
+}
+body{
+  background-color: rgb(32, 43, 60)
+}
+.notifi {
+  z-index: 11;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 400;
+  padding: 6px;
+  font-family: sans-serif;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: rgb(255, 255, 0);
+  visibility: hidden;
+  opacity: 0;
+  transition: 200ms;
+}
+.notifi-green {
+  background-color: rgba(62, 219, 0, 1);
+}
+.notifi-red {
+  background-color: rgba(197, 52, 0, 1);
+}
+.notifi--visible {
+  top: 100px;
+  opacity: 1;
+  visibility: visible;
+}
+/*Hier wird alles wichtige für den Melder reingebaut!*/
+.melder{
+    height: 95%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 18% 6% 21% 19% 11% 9% 16%;
+    grid-template-rows: 20% 28% 13% 6% 7% 1.5% 24.5%;
+    gap: 0px 0px;
+}
+.melder_Img{
+    height: 100%;
+    grid-area: 1 / 1 / 8 / 8;
+    margin: 0px;
+    padding: 0px;
+}
+.RedButton { 
+  grid-area: 4 / 3 / 7 / 4; 
+}
+.RedButton button{
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  border: none;
+}
+.greyUp {
+  grid-area: 5 / 5 / 6 / 6;
+ }
+ .greyUp button{
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  border: none;
+ }
+ .openInNew{
+  cursor: pointer;
+  grid-area: 1 / 7 / 2 / 8;
+  color:rgba(64, 117, 191, 1);
+  top: 0px;
+  right: 0px;
+ }
+.Display{
+  font-family: MelderFont;
+  grid-area: 2 / 2 / 3 / 7; 
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;  
+}
+.row1col1{
+  grid-area: 1 / 1 / 2 / 2;
+  position: relative; 
+}
+.row1col1.width{
+  grid-area: 1 / 1 / 2 / 3;
+}
+.row1col2{
+  grid-area: 1 / 2 / 2 / 3;
+  position: relative; 
+}
+.row2col1{
+  grid-area: 2 / 1 / 3 / 2;
+  position: relative; 
+}
+.row2col1.width{
+  grid-area: 2 / 1 / 3 / 3;
+}
+.row2col2{
+  grid-area: 2 / 2 / 3 / 3;
+  position: relative; 
+}
+.row3col1{
+  grid-area: 3 / 1 / 4 / 2;
+  position: relative; 
+}
+.row3col1.width{
+  grid-area: 3 / 1 / 4 / 3;
+}
+.row3col2{
+  grid-area: 3 / 2 / 4 / 3;
+  position: relative; 
+}
+.row4col1{
+  grid-area: 4 / 1 / 5 / 2;
+  position: relative; 
+}
+.row4col1.width{
+  grid-area: 4 / 1 / 5 / 3;
+}
+.row4col2{
+  grid-area: 4 / 2 / 5 / 3;
+  position: relative;
+}
+
+.displayText1{
+  text-align: left;
+  font-family: MelderFont;
+  font-size: 3.5vh;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  left: 0px;
+}
+
+.displayText2{
+  text-align: right;
+  font-family: MelderFont;
+  font-size: 3.5vh;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  right: 0px;
+}
+.displayText3{
+  text-align: left;
+  font-family: MelderFont;
+  font-size: 3.5vh;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  left: 0px;
+}
+.displayText4{
+  text-align: right;
+  font-family: MelderFont;
+  font-size: 3.5vh;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  right: 0px;
+}
+.displayText5{
+  text-align: left;
+  left: 0px;
+  font-family: MelderFont;
+  font-size: 3.5vh;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  left: 0px;
+}
+.displayText6{
+  text-align: right;
+  left: 0px;
+  font-family: MelderFont;
+  font-size: 3.5vh;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  right: 0px;
+}
+
+.displayText7{
+  text-align: left;
+  font-family: MelderFont;
+  font-size: 3.5vh;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  left: 0px;
+}
+.displayText8{
+  text-align: right;
+  font-family: MelderFont;
+  font-size: 3.5vh;
+  -webkit-transform:scale(1,1.8);
+  position: absolute;
+  bottom: 6px;
+  right: 0px;
+}
+.displayText1.idle{
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  -webkit-transform:scale(1,1);
+}
+.displayText2.idle{
+  top: 0px;
+  left: 0px;
+  height: 50%;
+  -webkit-transform:scale(1,1);
+}
+.connectionIndicator{
+  margin: 2px;
+  height: 75%;
+  width: 32%;
+  position: relative;
+  visibility: hidden;
+  }
+  .connectionIndicator.active{
+  visibility: visible;
+  }
+  .speaker{
+  margin: 2px;
+  height: 75%;
+  width: 25%;
+  position: relative;
+  }
+  .battery{
+  margin: 2px;
+  height: 100%;
+  width: 40%;
+  }

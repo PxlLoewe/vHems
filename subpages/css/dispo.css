@@ -1,28 +1,239 @@
-.notifi{
-    z-index: 11;
-    position: fixed;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 400;
-    padding: 6px;
-    font-family: sans-serif;
-    border: 1px solid #aaaaaa;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    background-color: rgb(255, 255, 0);
-    visibility: hidden;
-    opacity: 0;
-    transition: 200ms;
+* {
+  color: rgb(255, 255, 255);
 }
-.notifi-green{
-    background-color: rgba(62, 219, 0, 1);
+body {
+  background-color: #10161f;
 }
-.notifi-red{
-    background-color: rgba(197, 52, 0, 1);
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
 }
-.notifi--visible{
-    top: 100px;
-    opacity: 1;
-    visibility: visible;
+.notifi {
+  z-index: 11;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 400;
+  padding: 6px;
+  font-family: sans-serif;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: rgb(255, 255, 0);
+  visibility: hidden;
+  opacity: 0;
+  transition: 200ms;
+}
+.notifi-green {
+  background-color: rgba(62, 219, 0, 1);
+}
+.notifi-red {
+  background-color: rgba(197, 52, 0, 1);
+}
+.notifi--visible {
+  top: 100px;
+  opacity: 1;
+  visibility: visible;
+}
+.grid {
+  width: 100%;
+  height: calc(100% - 80px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+}
+.Add {
+  position: relative;
+  width: 100%;
+}
+.Add img {
+  width: 100%;
+  bottom: 0;
+}
+.rescuetrack {
+  height: 100%;
+  width: 100%;
+  grid-area: 1 / 2 / 2 / 3;
+}
+.Prim {
+  grid-area: 1 / 1 / 2 / 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px 20px;
+}
+.Prim input {
+  color: #fff;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 25px;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border: none;
+  border-bottom: 2px solid white;
+  background-color: rgba(0, 0, 0, 0);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: rgb(255, 255, 255) !important;
+}
+.Prim #Alarmieren{
+  cursor: pointer;
+  height: 28px;
+  background-color: #4AB8D0;
+  position: relative;
+  border: none;
+  margin-bottom: 5px;
+}
+.Prim #Anlegen{
+  color: #fff;
+  cursor: pointer;
+  height: 28px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid rgb(255, 255, 255);
+  position: relative;
+}
+.select{
+  color: #fff;
+  cursor: pointer;
+  height: 28px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid rgb(255, 255, 255);
+}
+.select option{
+  height: 10px;
+  color: #fff;
+  height: 28px;
+  background-color: rgb(0, 0, 0);
+}
+.Datum {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.Uhrzeit {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.Autragsnummer {
+  grid-area: 1 / 3 / 2 / 4;
+}
+.Objekt {
+  grid-area: 2 / 1 / 3 / 3;
+}
+.Etage {
+  grid-area: 2 / 3 / 3 / 4;
+}
+.Straße {
+  grid-area: 3 / 1 / 4 / 3;
+}
+.HNR {
+  grid-area: 3 / 3 / 4 / 4;
+}
+.Ort {
+  grid-area: 4 / 1 / 5 / 2;
+}
+.Ortsteil {
+  grid-area: 4 / 2 / 5 / 3;
+}
+.Patient {
+  grid-area: 5 / 1 / 6 / 2;
+}
+.Anrufer {
+  grid-area: 5 / 2 / 6 / 3;
+}
+.Stichwort {
+  grid-area: 6 / 1 / 7 / 2;
+}
+.Infos {
+  grid-area: 6 / 2 / 7 / 3;
+}
+.Zusatz {
+  grid-area: 6 / 3 / 7 / 4;
+}
+.Fahrzeug {
+  grid-area: 1 / 5 / 2 / 6;
+}
+.Fax {
+  grid-area: 2 / 5 / 3 / 6;
+}
+.Anlegen {
+  grid-area: 3 / 5 / 4 / 6;
+}
+.Alarmierung {
+  grid-area: 4 / 5 / 5 / 6;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px 15px;
+  grid-area: 2 / 1 / 3 / 3;
+}
+.InfoTable {
+  text-align: center;
+  margin-top: 5px;
+  overflow: scroll;
+  width: 100%;
+}
+.InfoTable tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.74);
+}
+.cols th {
+  padding: 5px;
+  font-size: 18px;
+}
+.tableau {
+  background-color: rgb(29, 38, 54);
+  width: 100%;
+  height: 100%;
+  grid-area: 1 / 3 / 3 / 4;
+}
+.LaufendeEinsätze {
+  background-color: rgb(29, 38, 54);
+  width: 100%;
+  height: 100%;
+  grid-area: 1 / 2 / 3 / 3;
+}
+.AngelegteEinsätze {
+  background-color: rgb(29, 38, 54);
+  height: 100%;
+  width: 100%;
+  grid-area: 1 / 1 / 3 / 2;
+}
+.heading {
+  margin: 5px;
+  padding: 8px;
+  border-bottom: solid 2px rgb(0, 78, 255);
+  font-size: 30px;
+}
+.refresh {
+  cursor: pointer;
+  float: right;
+  font-size: 30px;
 }

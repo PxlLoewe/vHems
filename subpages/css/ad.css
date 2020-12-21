@@ -1,0 +1,21 @@
+*{
+    font-family: sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+.grid-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2fr 2fr 2fr 1fr;
+    gap: 0px 0px;
+  }
+.autor{
+    grid-area: 4 / 4 / 5 / 5;
+    text-align: right;
+    bottom: 0;
+}
+.autor p{
+    bottom: 0;
+}
