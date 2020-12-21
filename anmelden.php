@@ -3,6 +3,7 @@ $db = new mysqli("localhost", "login", "Ighids11", "vHEMS");
 if ($db->connect_error) {
     echo $db->connect_error;
 }
+
 if (isset($_POST["submit"])) {
     $name = $_POST["name"];
     $password = $_POST["password"];
@@ -23,8 +24,9 @@ if (isset($_POST["submit"])) {
             $stmt = $db->prepare("UPDATE users SET lastLogin_at = ? WHERE id = ?");
             $stmt->bind_param('ii', $time, $login->id);
             $stmt->execute();
+        
+            header("Location: index.php?page={$_GET['page']}");
             $response = "<div class='response_g'>Deine Daten sind richtig</div>";
-            header('Location: index.php');
         }
     }
 }
