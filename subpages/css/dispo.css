@@ -83,6 +83,7 @@ body {
   grid-template-columns: 1fr 1fr 1fr 0.2fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 10px 20px;
+  
 }
 .Prim input {
   color: #fff;
@@ -104,22 +105,77 @@ input:-webkit-autofill:active  {
   transition: background-color 5000s;
   -webkit-text-fill-color: rgb(255, 255, 255) !important;
 }
+
 .Prim #Alarmieren{
   cursor: pointer;
-  height: 28px;
-  background-color: #4AB8D0;
   position: relative;
-  border: none;
-  margin-bottom: 5px;
+
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  font-size: 1.5vm;
+  min-height: 30%;
+  max-height: 90%;
+  width: 90%;
+  text-transform: uppercase;
+  display: inline-block;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  overflow: hidden;
+  border: 2px solid #C70039;
 }
+
+#Alarmieren:hover{
+  border: 2px solid white;
+}
+
+#Alarmieren:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #C70039 ;
+}
+
+#Alarmieren:hover:after,
+#Alarmieren:active:after {
+  width: 100%;
+}
+
 .Prim #Anlegen{
   color: #fff;
   cursor: pointer;
-  height: 28px;
+  min-height: 30%;
+  max-height: 60%;
+  width: 90%;
   background-color: rgba(0, 0, 0, 0);
-  border: 2px solid rgb(255, 255, 255);
+  border: 2px solid #239b56;
   position: relative;
+  font-size: 1.5vm;
 }
+
+#Anlegen:hover{
+  background-color: #239b56;
+  color:white;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  border: 2px solid  white;
+}
+
+.Anlegen, .Alarmierung{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .select{
   color: #fff;
   cursor: pointer;
