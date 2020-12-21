@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-@font-face { 
-  font-family: "MelderFont"; 
-  src: url("/media/MelderV2.ttf"); 
-  }
-=======
 @font-face {
   font-family: "MelderFont";
   src: url("/subpages/media/VCR_OSD_MONO_1.001.ttf");
 }
->>>>>>> b87ddd08a62f29c8f30f38fb54b755f6680c32d7
 :root {
   --maxHeight: calc(100% - 80px);
 }
@@ -45,10 +38,6 @@
   position: absolute;
   left: 0;
   height: calc(100% - 80px);
-<<<<<<< HEAD
-  width: 100%;
-  max-width: 100%;
-=======
   width: 60%;
   max-width: 100%;
   overflow: auto;
@@ -75,7 +64,6 @@
 .Add img{
   width: 100%;
   height: 100%;
->>>>>>> b87ddd08a62f29c8f30f38fb54b755f6680c32d7
 }
 .pilot {
   grid-area: 1 / 1 / 2 / 3;
@@ -95,18 +83,12 @@
 }
 #connwarning {
   position: absolute;
-<<<<<<< HEAD
-  right: 0px;
-  width: 0%;
-  height: var(--maxHeight);
-=======
   top: 0px;
   left: 0px;
   height: 30px;
   margin: 3px;
   transition: 200ms;
   color: rgba(255, 0, 0, 0);
->>>>>>> b87ddd08a62f29c8f30f38fb54b755f6680c32d7
 }
 #overlay {
   z-index: 5;

@@ -108,7 +108,7 @@
         var mapControll = L.control.layers(baseMaps, null, controllSettings)
             .addTo(mymap)
 
-        $.getJSON("./kml/Funkverkehrsbereiche.geojson", function(data) {
+        $.getJSON("./geojson/Funkverkehrsbereiche.geojson", function(data) {
             var Funk = L.geoJson(data, {
                 onEachFeature: function(feature, featureLayer) {
                     featureLayer.bindPopup(feature.properties.name)
@@ -121,7 +121,7 @@
 
             mapControll.addOverlay(Funk, 'Funk')
         });
-        $.getJSON("./kml/RTH.geojson", function(data) {
+        $.getJSON("./geojson/RTH.geojson", function(data) {
             var Funk = L.geoJson(data, {
                 onEachFeature: function(feature, featureLayer) {
                     featureLayer.bindPopup(feature.properties.Name)
