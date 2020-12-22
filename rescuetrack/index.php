@@ -37,6 +37,7 @@
                 </span></button>
             <div id="planeList" class="planeList">
             </div>
+            <div class="credits">©Johannes Ambre & Robert Schichtl</div>
         </div>
 
     </body>
@@ -89,17 +90,17 @@
 
         var mymap = L.map("map", {
             zoomSnap: 0.25,
-            layers: [hybridMutant],
+            layers: [DarkMatter],
             center: [51.61668560448308, 10.123267161219689],
             zoom: 6,
         })
         var baseMaps = {
-            "hybrid": hybridMutant,
-            "darkLayer": darkLayer,
-            "darkMatter": DarkMatter,
-            "roadmap": roadMutant,
+            "Hybrid": hybridMutant,
+            "Dark Matter": DarkMatter,
+            "Roadmap": roadMutant,
             "Satalite": satMutant,
-            "Terrain": terrainMutant
+            "Terrain": terrainMutant,
+            "Dark bright": darkLayer,
         }
         var controllSettings = {
             position: "bottomleft"
@@ -124,7 +125,7 @@
         $.getJSON("./geojson/RTH.geojson", function(data) {
             var Funk = L.geoJson(data, {
                 onEachFeature: function(feature, featureLayer) {
-                    featureLayer.bindPopup(feature.properties.Name)
+                    featureLayer.bindPopup(feature.properties.name)
                     
                 },
                 style: {
@@ -138,7 +139,7 @@
 
         setInterval(() => {
             //übernehmen der alten Marker in Arrey und löschen neue
-            $.get("/api/planes.php", async (data) => {
+            $.get("./api/planes.php", async (data) => {
                 if (data == "") return
                 var dataJSON = JSON.parse(data)
                 var dataArr = Object.entries(dataJSON)
@@ -261,13 +262,13 @@
 
         function scrollImg(ip) {
             $.get({
-                url: `https://vhems.pxlloewe.de/api/scrollIcon.php?ip=${ip}`,
+                url: `./api/scrollIcon.php?ip=${ip}`,
             })
         }
 
         function rename(ip, name) {
             $.get({
-                url: `https://vhems.pxlloewe.de/api/rename.php?ip=${ip}&name=${name}`,
+                url: `./api/rename.php?ip=${ip}&name=${name}`,
             })
         }
 
@@ -290,9 +291,9 @@
             var input = parrent.getElementsByTagName("input")[0]
             var newName = input.value
             if (event.key === 'Enter') {
-                newName = newName.replaceAll(" ", "+")
+                newName = encodeURIComponent(newName)
                 $.get({
-                    url: "https://vhems.pxlloewe.de/api/rename.php",
+                    url: "./api/rename.php",
                     data: {
                         name: newName,
                         ip: ip,
