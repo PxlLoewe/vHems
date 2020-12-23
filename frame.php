@@ -33,12 +33,16 @@ if ($user->num_rows == 0) {
                 if ($user->pilot == 1) {
                     echo "<li><a href='index.php?page=pilot'>Pilot</a></li>";
                 } ?> <li><a href="index.php?page=edit_profile">Profil</a></li>
+<<<<<<< Updated upstream
             <li><a href="index.php?page=logout">Logout</a></li>
+=======
+            <li><a class="red" href="index.php?page=logout">Logout</a></li>
+>>>>>>> Stashed changes
         </ul>
     </div>
 </body> <?php
         if (!isset($_GET['page'])) {
-            $_GET['page'] = "select";
+            $_GET['page'] = "pilot";
         }
         require('subpages/' . $_GET['page'] . '.php');
         ?>

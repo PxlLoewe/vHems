@@ -35,7 +35,7 @@ if($db->connect_error){
         <label class="labelDiscordAlarmierung" for="discordCheck">Möchtest du auf Discord Alamiert
             werden?</label><br><br>
     </div>
-    <button class="submit-btn" id="selectActive">CONFIRM</button>
+    <button class="submit-btn" id="selectActive">Anmelden</button>
 </div>
 <div class="left">
     <?php 
@@ -105,7 +105,7 @@ if($db->connect_error){
     </div>
 </div>
 </div>
-<iframe class="right" src="https://rescuetrack.pxlloewe.de" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+<iframe class="right" src="/rescuetrack" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
 <script>
     const redButton = document.getElementById("redButton");
     const greyUp = document.getElementById("greyUp");

@@ -38,7 +38,11 @@
             <div class="Anlegen"><button id="Anlegen">Alarmierung hinzufügen</button></div>
             <div class="Alarmierung"><button id="Alarmieren" onclick="sendAlarmierung(document.getElementById('selectFahrzeuge').value)">Alarmierung Senden</button></div>
         </div>
+<<<<<<< Updated upstream
         <iframe class="rescuetrack" src="https://rescuetrack.pxlloewe.de" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+=======
+        <iframe class="rescuetrack" src="/rescuetrack" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+>>>>>>> Stashed changes
         <div class="info">
             <div class="AngelegteEinsätze">
                 <table class="InfoTable" id="AngelegteTabelle">

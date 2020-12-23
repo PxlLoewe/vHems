@@ -24,7 +24,10 @@ if (isset($_POST["submit"])) {
             $stmt = $db->prepare("UPDATE users SET lastLogin_at = ? WHERE id = ?");
             $stmt->bind_param('ii', $time, $login->id);
             $stmt->execute();
-        
+            
+            if(!isset($_GET['page'])){
+                $_GET['page'] = "pilot";
+            }
             header("Location: index.php?page={$_GET['page']}");
             $response = "<div class='response_g'>Deine Daten sind richtig</div>";
         }

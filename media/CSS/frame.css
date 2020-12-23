@@ -41,7 +41,30 @@
         text-decoration: none;
         font-size: 35px;
         margin: auto 8px;
+        padding: 5px;
+        transition: all 400ms;
     }
     .menue-bar a:hover{
+<<<<<<< Updated upstream
         text-decoration: underline;
+=======
+        background-color:#283747;
+        border: none;
+        border-radius: 10px;
+    }
+    .menue-bar .red{
+        text-transform: uppercase;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        font-size: 35px;
+        margin: auto 8px;
+        transition: all 400ms;
+    }
+    .menue-bar .red:hover{
+        background-color: #C70039;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+>>>>>>> Stashed changes
     }
