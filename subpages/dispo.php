@@ -2,41 +2,85 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="/subpages/JS/notify.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
+<script type="text/JavaScript" src=" https://MomentJS.com/downloads/moment.js"></script>
 <title>Disponieren</title>
 
 <body>
     <div class="grid">
-        <div class="Prim">
-            <div class="Datum"></div>
-            <div class="Uhrzeit"></div>
-            <div class="Autragsnummer"><input type="text" placeholder="Auftragsnummer" id="Auftragsnummer"></div>
-            <div class="Objekt"><input maxlength="7" type="text" placeholder="Objekt" id="Objekt"></div>
-            <div class="Etage"><input maxlength="2" type="text" placeholder="Etage" id="Etage"></div>
-            <div class="Straße"><input maxlength="20" type="text" placeholder="Straße" id="Straße"></div>
-            <div class="HNR"><input maxlength="3" type="text" placeholder="HNR" id="HNR"></div>
-            <div class="Ort"><input maxlength="10" type="text" placeholder="Ort" id="Ort"></div>
-            <div class="Ortsteil"><input maxlength="20" type="text" placeholder="Ortsteil" id="Ortsteil"></div>
-            <div class="Patient"></div>
-            <div class="Anrufer"></div>
-            <div class="Stichwort"><input maxlength="22" type="text" placeholder="Stichwort" id="Stichwort"></div>
-            <div class="Infos"><input maxlength="150" type="text" placeholder="Einsatzinformation" id="Einsatzinformation"></div>
-            <div class="Zusatz"></div>
+        <div class="forms">
+            <div class="edit">
+                <div class="Datum"></div>
+                <div class="Uhrzeit"></div>
+                <div class="Autragsnummer"><input type="text" placeholder="Auftragsnummer" id="Auftragsnummer2"></div>
+                <div class="Objekt"><input maxlength="7" type="text" placeholder="Objekt" id="Objekt2"></div>
+                <div class="Etage"><input maxlength="2" type="text" placeholder="Etage" id="Etage2"></div>
+                <div class="Straße"><input maxlength="20" type="text" placeholder="Straße" id="Straße2"></div>
+                <div class="HNR"><input maxlength="3" type="text" placeholder="HNR" id="HNR2"></div>
+                <div class="Ort"><input maxlength="10" type="text" placeholder="Ort" id="Ort2"></div>
+                <div class="Ortsteil"><input maxlength="20" type="text" placeholder="Ortsteil" id="Ortsteil2"></div>
+                <div class="Patient"></div>
+                <div class="Anrufer"></div>
+                <div class="Stichwort"><input maxlength="22" type="text" placeholder="Stichwort" id="Stichwort2"></div>
+                <div class="Infos"><input maxlength="150" type="text" placeholder="Einsatzinformation" id="Einsatzinformation2"></div>
+                <div class="Zusatz"></div>
 
-            <div class="Fahrzeug">
-                <select name="activeFahrzeug" class="select" id="selectFahrzeuge">
-                    <option>Liste</option>
-                    <?php
-                    $stmt = $db->query("SELECT * FROM Fahrzeugliste ORDER BY id ASC");
+                <div class="Fahrzeug">
+                    <select name="activeFahrzeug" class="select" id="selectFahrzeuge2">
+                        <option>Liste</option>
+                        <?php
+                        $stmt = $db->query("SELECT * FROM Fahrzeugliste ORDER BY id ASC");
 
-                    while ($Fahrzeuge = $stmt->fetch_object()) { ?>
-                        <option><?php echo $Fahrzeuge->Fahrzeuge ?></option>
-                    <?php } ?>
-                    ?>
-                </select>
+                        while ($Fahrzeuge = $stmt->fetch_object()) { ?>
+                            <option><?php echo $Fahrzeuge->Fahrzeuge ?></option>
+                        <?php } ?>
+                        ?>
+                    </select>
+                    <div class="Anlegen"><button onclick="editPrimMission()" id="Anlegen">Alarmierung hinzufügen</button></div>
+                </div>
             </div>
-            <div class="Fax"></div>
-            <div class="Anlegen"><button id="Anlegen">Alarmierung hinzufügen</button></div>
-            <div class="Alarmierung"><button id="Alarmieren" onclick="sendAlarmierung(document.getElementById('selectFahrzeuge').value)">Alarmierung Senden</button></div>
+            <div class="head">
+                <button id="switchPrim">Primäreinsätze</button>
+                <button id="switchSek">Sekundäreinsätze</button>
+            </div>
+
+            <div id="body" class="switch">
+                <div class="Prim">
+                    <div class="Datum"></div>
+                    <div class="Uhrzeit"></div>
+                    <div class="Autragsnummer"><input type="text" placeholder="Auftragsnummer" id="Auftragsnummer"></div>
+                    <div class="Objekt"><input maxlength="7" type="text" placeholder="Objekt" id="Objekt"></div>
+                    <div class="Etage"><input maxlength="2" type="text" placeholder="Etage" id="Etage"></div>
+                    <div class="Straße"><input maxlength="20" type="text" placeholder="Straße" id="Straße"></div>
+                    <div class="HNR"><input maxlength="3" type="text" placeholder="HNR" id="HNR"></div>
+                    <div class="Ort"><input maxlength="10" type="text" placeholder="Ort" id="Ort"></div>
+                    <div class="Ortsteil"><input maxlength="20" type="text" placeholder="Ortsteil" id="Ortsteil"></div>
+                    <div class="Patient"></div>
+                    <div class="Anrufer"></div>
+                    <div class="Stichwort"><input maxlength="22" type="text" placeholder="Stichwort" id="Stichwort"></div>
+                    <div class="Infos"><input maxlength="150" type="text" placeholder="Einsatzinformation" id="Einsatzinformation"></div>
+                    <div class="Zusatz"></div>
+
+                    <div class="Fahrzeug">
+                        <select name="activeFahrzeug" class="select" id="selectFahrzeuge">
+                            <option>Liste</option>
+                            <?php
+                            $stmt = $db->query("SELECT * FROM Fahrzeugliste ORDER BY id ASC");
+
+                            while ($Fahrzeuge = $stmt->fetch_object()) { ?>
+                                <option><?php echo $Fahrzeuge->Fahrzeuge ?></option>
+                            <?php } ?>
+                            ?>
+                        </select>
+                    </div>
+                    <div class="Anlegen"><button onclick="addPrimMission(document.getElementById('selectFahrzeuge').value)" id="Anlegen">Alarmierung hinzufügen</button></div>
+                    <div class="Alarmierung"><button id="Alarmieren" onclick="sendAlarmierung(document.getElementById('selectFahrzeuge').value)">Alarmierung Senden</button></div>
+
+                </div>
+                <div class="Sek">
+                    Sek
+                </div>
+            </div>
+
         </div>
         <iframe class="rescuetrack" src="https://vhems.pxlloewe.de/rescuetrack" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         <div class="info">
@@ -49,6 +93,7 @@
                         <th>Station</th>
                         <th>Ort</th>
                         <th>Stichwort</th>
+                        <th>Aktionen</th>
                     </tr>
                 </table>
                 <?php
@@ -61,13 +106,14 @@
             <div class="LaufendeEinsätze">
                 <table class="InfoTable" id="LaufendeTabelle">
                     <tr>
-                        <th class="heading" colspan="4">Laufende Einsätze</th>
+                        <th class="heading" colspan="5">Laufende Einsätze</th>
                     </tr>
                     <tr class="cols">
                         <th>Station</th>
                         <th>Ort</th>
                         <th>Stichwort</th>
                         <th>Alarmiert um</th>
+                        <th>Aktionen</th>
                     </tr>
                 </table>
                 <?php
@@ -101,6 +147,9 @@
 </body>
 <script>
     const tableau = document.getElementById("tableau")
+    const angelegteTabelle = document.getElementById("AngelegteTabelle")
+    const laufendeTabelle = document.getElementById("LaufendeTabelle")
+
     var socket = io.connect("https://websocket.pxlloewe.de", {
         secure: true
     });
@@ -109,7 +158,6 @@
         while (tableau.rows.length > 2) {
             tableau.deleteRow(2);
         }
-        console.log("Daten wurden empfangen!");
         for (var i = 0; i < data.piloten.length; i++) {
             var reihe = tableau.insertRow(-1)
 
@@ -121,6 +169,23 @@
             status.innerHTML = data.piloten[i].status;
             DCAlarmierung.innerHTML = data.piloten[i].lst;
         }
+        while (angelegteTabelle.rows.length > 2) {
+            angelegteTabelle.deleteRow(2);
+        }
+        for (var i = 0; i < data.angelegte.length; i++) {
+
+            angelegteTabelle.innerHTML += `<tr><td>${data.angelegte[i].station}</td><td>${data.angelegte[i].ort}</td><td>${data.angelegte[i].sw}</td><td><button class="iconButton" onclick="sendAlarmierungByID(${data.angelegte[i].id})"><span class="material-icons">notifications</span></button><button class="iconButton" onclick="deleteAlarmierungByID(${data.angelegte[i].id})"><span class="material-icons">delete</span></button></td></tr>`
+
+        }
+        while (laufendeTabelle.rows.length > 2) {
+            laufendeTabelle.deleteRow(2);
+        }
+        for (var i = 0; i < data.laufende.length; i++) {
+
+            laufendeTabelle.innerHTML += `<tr><td>${data.laufende[i].station}</td><td>${data.laufende[i].o}</td><td>${data.laufende[i].sw}</td><td>${data.laufende[i].time}</td><td><button class="iconButton" onclick="archiveMission(${data.laufende[i].id})"><span class="material-icons">archive</span></button></td></tr>`
+
+        }
+
 
     })
     socket.on("disconnect", () => {
@@ -138,8 +203,8 @@
     })
 
     function sendAlarmierung(fahrzeug) {
-        console.log("test")
-        socket.emit("sendAlamierung", {
+
+        socket.emit("sendPrimMission", {
             fahrzeug: fahrzeug,
             id: "wip",
             an: document.getElementById("Auftragsnummer").value,
@@ -152,5 +217,49 @@
             sw: document.getElementById("Stichwort").value,
             ei: document.getElementById("Einsatzinformation").value
         })
+    }
+
+    function addPrimMission(fahrzeug) {
+        console.log(document.getElementById('selectFahrzeuge').value)
+        socket.emit("addPrimMission", {
+            fahrzeug: fahrzeug,
+            id: "wip",
+            an: document.getElementById("Auftragsnummer").value,
+            obj: document.getElementById("Objekt").value,
+            et: document.getElementById("Etage").value,
+            str: document.getElementById("Straße").value,
+            hnr: document.getElementById("HNR").value,
+            o: document.getElementById("Ort").value,
+            ot: document.getElementById("Ortsteil").value,
+            sw: document.getElementById("Stichwort").value,
+            ei: document.getElementById("Einsatzinformation").value
+        })
+    }
+
+    function editPrimMission(id) {
+        socket.emit("editPrimMission", {
+
+        })
+    }
+
+
+    const body = document.getElementById("body")
+    document.getElementById("switchPrim").addEventListener("click", () => {
+        body.classList.remove("dasfas")
+    })
+    document.getElementById("switchSek").addEventListener("click", () => {
+        body.classList.add("dasfas")
+    })
+
+    function sendAlarmierungByID(id) {
+        socket.emit("sendAlarmierungByID", id)
+    }
+
+    function deleteAlarmierungByID(id) {
+        socket.emit("deleteAlarmierungByID", id)
+    }
+
+    function archiveMission(id) {
+        socket.emit("deleteMissionByID", id)
     }
 </script>

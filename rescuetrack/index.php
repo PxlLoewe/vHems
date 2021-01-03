@@ -48,8 +48,14 @@
         var dataNew = []
         var dataOld = []
         var markersShown = []
+
+        var missionsNew = []
+        var missionsOld = []
+        var missionsShown = []
+
         var sideList = []
         var planeDiv = document.getElementById("planeList")
+
 
 
         var darkLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicHhsbG9ld2UiLCJhIjoiY2tpeDF1N3I5M29zZDJ2cWowdHhtMHNoYSJ9.tz-VKD3f41D0IjxsOOWUog', {
@@ -62,9 +68,9 @@
         })
 
         var DarkMatter = L.mapboxGL({
-        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
-        style: 'https://api.maptiler.com/maps/f8f438bc-037e-4c00-a143-8580fdb510b2/style.json?key=4BB1IOnpAKW0l36TVJbL'
-      })
+            attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+            style: 'https://api.maptiler.com/maps/f8f438bc-037e-4c00-a143-8580fdb510b2/style.json?key=4BB1IOnpAKW0l36TVJbL'
+        })
 
         var roadMutant = L.gridLayer.googleMutant({
             maxZoom: 24,
@@ -123,19 +129,53 @@
             mapControll.addOverlay(Funk, 'Funk')
         });
         $.getJSON("./geojson/RTH.geojson", function(data) {
-            var Funk = L.geoJson(data, {
+
+            var rths = L.geoJson(data, {
+                filter: function(feature, layer) {
+                    if (feature.geometry.type == "Point") return true
+                },
+
                 onEachFeature: function(feature, featureLayer) {
                     featureLayer.bindPopup(feature.properties.name)
-                    
+
+
+                },
+            })
+
+            mapControll.addOverlay(rths, 'LRZs')
+        });
+
+
+        $.getJSON(("./geojson/SPEZIALKLINIKEN.geojson"), (data) => {
+            var myIcon = L.icon({
+                iconUrl: `./media/krankenhaus.png`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15],
+                popupAnchor: [0, -20],
+            })
+
+            var kliniken = L.geoJson(data, {
+                filter: function(feature, layer) {
+                    if (feature.geometry.type == "Point") return true
+                },
+                filter: function(feature, layer) {
+                    if (feature.geometry.type == "Point") return true
+                },
+
+                onEachFeature: function(feature, featureLayer) {
+                    featureLayer.bindPopup(feature.properties.name)
+                    featureLayer.setIcon(myIcon)
+
+
                 },
                 style: {
                     opacity: 0,
                     fillOpacity: 0,
                 }
             })
+            mapControll.addOverlay(kliniken, 'kliniken')
 
-            mapControll.addOverlay(Funk, 'LRZs')
-        });
+        })
 
         setInterval(() => {
             //übernehmen der alten Marker in Arrey und löschen neue
@@ -149,10 +189,8 @@
                 dataNew = dataArr
 
                 if (dataNew.length == dataOld.length) {
-                    console.log("Amount of pilots same: refreshing pos only")
                     updateMarkers(dataArr, markersShown)
                 } else {
-                    console.log("refreshing map")
                     clearMarkers();
                     generateMarkers(dataArr)
                     showMarkers()
@@ -161,14 +199,65 @@
             })
         }, 500)
 
+        setInterval(() => {
+            //übernehmen der alten Marker in Arrey und löschen neue
+            $.get("./api/missions.php", async (data) => {
+                if (data == "") return
+                var dataJSON = JSON.parse(data)
+
+                // update markers Array
+                missionsOld = missionsNew
+                missionsNew = dataJSON
+
+                if (missionsNew.length == missionsOld.length) {} else {
+                    clearMissions();
+                    MissionsToMarterArr(missionsNew)
+                    showMissions();
+
+                }
+            })
+        }, 5000)
+
+
+
 
         function clearMarkers() {
             for (var i = 0; i < markersShown.length; i++) {
                 mymap.removeLayer(markersShown[i].marker);
+                mymap.removeLayer(markersShown[i].line);
             }
             markersShown = []
             planeDiv.innerHTML = "";
         }
+
+        function clearMissions() {
+            for (var i = 0; i < missionsShown.length; i++) {
+                mymap.removeLayer(missionsShown[i].marker);
+            }
+            missionsShown = []
+        }
+
+        function MissionsToMarterArr(data) {
+
+            var myIcon = L.icon({
+                iconUrl: `./media/EinsatzIcon.png`,
+                iconSize: [40, 40],
+                iconAnchor: [20, 20],
+                popupAnchor: [0, -10],
+            })
+
+            data.forEach((dataPeace) => {
+                var marker = L.marker([dataPeace.lat, dataPeace.lng])
+                    .bindPopup(`${dataPeace.Fahrzeug}`)
+                    .setIcon(myIcon)
+
+                missionsShown.push({
+                    marker: marker,
+                })
+            })
+        }
+
+
 
         function generateMarkers(data) {
             var i = 0;
@@ -181,6 +270,16 @@
 
                 var newMarker = L.marker([latitude, longitude])
                     .bindPopup(`${dataReal.name}`)
+
+                var polylinePoints = []
+
+                dataReal.positionHistory.forEach((latLng) => {
+                    polylinePoints.push([latLng.latitude, latLng.longitude])
+                })
+
+
+
+                var line = L.polyline(polylinePoints)
 
                 //creating Div for List
                 var element = document.createElement("div")
@@ -200,6 +299,7 @@
 
                 markersShown.push({
                     marker: newMarker,
+                    line: line,
                     ip: dataReal.ip,
                     indexSideElement: sideList.length - 1
                 })
@@ -213,7 +313,18 @@
             for (var i = 0; i < markersShown.length; i++) {
                 markersShown[i].marker
                     .addTo(mymap)
+                markersShown[i].line 
+                    .addTo(mymap)
+                
                 planeDiv.appendChild(sideList[markersShown[i].indexSideElement])
+            }
+        }
+
+        function showMissions() {
+
+            for (var i = 0; i < missionsShown.length; i++) {
+                missionsShown[i].marker
+                    .addTo(mymap)
             }
         }
 
@@ -244,10 +355,18 @@
                     popupAnchor: [0, -20],
                 })
 
+                var polylinePoints = []
+
+                dataReal.positionHistory.forEach((latLng) => {
+                    polylinePoints.push([latLng.latitude, latLng.longitude])
+                })
+
                 currentPlane.marker
                     .setLatLng([latitude, longitude])
                     .setIcon(myIcon)
                     ._popup.setContent(`${getDisplayName(dataReal)}`)
+
+                currentPlane.line.setLatLngs(polylinePoints)
 
                 var imgSide = sideList[currentPlane.indexSideElement].getElementsByTagName("img")[0]
                 imgSide.src = `./media/${dataReal.icon}.png`

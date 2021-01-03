@@ -42,6 +42,8 @@
         text-decoration: none;
         font-size: 35px;
         margin: auto 8px;
+        padding: 5px;
+        transition: all 400ms;
     }
     .menue-bar a:hover{
         background-color:#283747;
@@ -55,10 +57,14 @@
         text-decoration: none;
         font-size: 35px;
         margin: auto 8px;
+        padding: 5px;
+        transition: all 400ms;
     }
-    .menue-bar a1:hover{
+    .menue-bar .red:hover{
         background-color: #C70039;
         border: none;
         border-radius: 10px;
         cursor: pointer;
+        
+
     }

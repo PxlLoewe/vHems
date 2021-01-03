@@ -103,11 +103,10 @@ if($db->connect_error){
             <div class="FMEkey0"><button onclick="updateStatus(0)" class="FMEkeyButton"></button></div>
         </div>
     </div>
-    <span id="openMelder" class="material-icons openInNew">open_in_new</span>
 </div>
 </div>
 </div>
-<iframe class="right" src="https://rescuetrack.pxlloewe.de" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+<iframe class="right" src="/rescuetrack" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
 <script>
     const redButton = document.getElementById("redButton");
     const greyUp = document.getElementById("greyUp");

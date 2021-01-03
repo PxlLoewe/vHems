@@ -36,7 +36,7 @@ if ($user->num_rows == 0) {
                 if ($user->pilot == 1) {
                     echo "<li><a href='index.php?page=pilot'>Pilot</a></li>";
                 } ?> <li><a href="index.php?page=edit_profile">Profil</a></li>
-            <li><a1 href="index.php?page=logout">Logout</a></li>
+            <li><a class="red" href="index.php?page=logout">Logout</a></li>
         </ul>
     </div>
 </body> <?php
