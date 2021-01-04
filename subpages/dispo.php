@@ -8,7 +8,7 @@
 <body>
     <div class="grid">
         <div class="forms">
-            <div class="edit">
+            <div class="edit" id="edit">
                 <div class="Datum"></div>
                 <div class="Uhrzeit"></div>
                 <div class="Autragsnummer"><input type="text" placeholder="Auftragsnummer" id="Auftragsnummer2"></div>
@@ -22,8 +22,6 @@
                 <div class="Anrufer"></div>
                 <div class="Stichwort"><input maxlength="22" type="text" placeholder="Stichwort" id="Stichwort2"></div>
                 <div class="Infos"><input maxlength="150" type="text" placeholder="Einsatzinformation" id="Einsatzinformation2"></div>
-                <div class="Zusatz"></div>
-
                 <div class="Fahrzeug">
                     <select name="activeFahrzeug" class="select" id="selectFahrzeuge2">
                         <option>Liste</option>
@@ -72,15 +70,14 @@
                             ?>
                         </select>
                     </div>
-                    <div class="Anlegen"><button onclick="addPrimMission(document.getElementById('selectFahrzeuge').value)" id="Anlegen">Alarmierung hinzufügen</button></div>
-                    <div class="Alarmierung"><button id="Alarmieren" onclick="sendAlarmierung(document.getElementById('selectFahrzeuge').value)">Alarmierung Senden</button></div>
+                    <div class="Anlegen"><button onclick="addPrimMission(document.getElementById('selectFahrzeuge').value)" id="Anlegen">Hinzufügen</button></div>
+                    <div class="Alarmierung"><button id="Alarmieren" onclick="sendAlarmierung(document.getElementById('selectFahrzeuge').value)">Alarm</button></div>
 
                 </div>
                 <div class="Sek">
                     Sek
                 </div>
             </div>
-
         </div>
         <iframe class="rescuetrack" src="https://vhems.pxlloewe.de/rescuetrack" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         <div class="info">
@@ -174,7 +171,7 @@
         }
         for (var i = 0; i < data.angelegte.length; i++) {
 
-            angelegteTabelle.innerHTML += `<tr><td>${data.angelegte[i].station}</td><td>${data.angelegte[i].ort}</td><td>${data.angelegte[i].sw}</td><td><button class="iconButton" onclick="sendAlarmierungByID(${data.angelegte[i].id})"><span class="material-icons">notifications</span></button><button class="iconButton" onclick="deleteAlarmierungByID(${data.angelegte[i].id})"><span class="material-icons">delete</span></button></td></tr>`
+            angelegteTabelle.innerHTML += `<tr><td>${data.angelegte[i].station}</td><td>${data.angelegte[i].ort}</td><td>${data.angelegte[i].sw}</td><td><button class="iconButton" onclick="sendAlarmierungByID(${data.angelegte[i].id})"><span class="material-icons">notifications</span></button><button class="iconButton" onclick="deleteAlarmierungByID(${data.angelegte[i].id})"><span class="material-icons">delete</span></button><button class="iconButton" onclick="showEditDiv(${data.angelegte[i].id})"><span class="material-icons">edit</span></button></td></tr>`
 
         }
         while (laufendeTabelle.rows.length > 2) {
@@ -238,9 +235,40 @@
 
     function editPrimMission(id) {
         socket.emit("editPrimMission", {
-
+            fahrzeug: fahrzeug,
+            id: "wip",
+            an: document.getElementById("Auftragsnummer2").value,
+            obj: document.getElementById("Objekt2").value,
+            et: document.getElementById("Etage2").value,
+            str: document.getElementById("Straße2").value,
+            hnr: document.getElementById("HNR2").value,
+            o: document.getElementById("Ort2").value,
+            ot: document.getElementById("Ortsteil2").value,
+            sw: document.getElementById("Stichwort2").value,
+            ei: document.getElementById("Einsatzinformation2").value,
+            zu: document.getElementById("Zusatzinformation2").value,
         })
+        document.getElementById("edit").classList.remove("show")
+
+
+
     }
+
+    function showEditDiv(id) {
+        document.getElementById("edit").classList.add("show")
+        socket.emit("getMissionInfo", id)
+    }
+    socket.on("emitMissionInfo", data => {
+        document.getElementById("Auftragsnummer2").value = data.an
+        document.getElementById("Objekt2").value = data.obj
+        document.getElementById("Etage2").value = data.et
+        document.getElementById("Straße2").value = data.str
+        document.getElementById("HNR2").value = data.hnr
+        document.getElementById("Ort2").value = data.o
+        document.getElementById("Ortsteil2").value = data.ot
+        document.getElementById("Stichwort2").value = data.sw
+        document.getElementById("Einsatzinformation2").value = data.ei
+    })
 
 
     const body = document.getElementById("body")

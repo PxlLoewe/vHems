@@ -16,8 +16,10 @@ if ($user->num_rows == 0) {
     session_destroy();
 } else {
     $user = $user->fetch_object();
-}
-?> <html>
+}?>
+
+<html>
+
 
 <head>
     <meta charset="utf-8">
