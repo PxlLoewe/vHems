@@ -29,33 +29,77 @@ body {
   /* Support for IE. */
   font-feature-settings: "liga";
 }
-.notifi {
-  z-index: 11;
-  position: fixed;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 400;
-  padding: 6px;
-  font-family: sans-serif;
-  border: 1px solid #aaaaaa;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-color: rgb(255, 255, 0);
-  visibility: hidden;
-  opacity: 0;
-  transition: 200ms;
+.edit .save{
+  grid-area: 3 / 5 / 4 / 6;
+  height: 100%;
+  width: 100%;
 }
-.notifi-green {
-  background-color: rgba(62, 219, 0, 1);
+.headPrim{
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  font-size: 1.5vm;
+  text-transform: uppercase;
+  display: inline-block;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  overflow: hidden;
+  border: 2px solid #4AB8D0;
+  outline: none;
 }
-.notifi-red {
-  background-color: rgba(197, 52, 0, 1);
+
+
+.headPrim:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  width: 0%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background: #4AB8D0;
 }
-.notifi--visible {
-  top: 100px;
-  opacity: 1;
-  visibility: visible;
+.headSek{
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  font-size: 1.5vm;
+  text-transform: uppercase;
+  display: inline-block;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  overflow: hidden;
+  border: 2px solid #4AB8D0;
+  outline: none;
+}
+  
+.headSek:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    width: 0%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #4AB8D0;
+}
+
+.active{
+  background: #4AB8D0;
+}
+
+.active:after {
+  width: 100%;
 }
 .grid {
   width: 100%;
@@ -127,6 +171,7 @@ body {
   transform: translateX(-100%);
   z-index: 6;
   width: 100%;
+  height: 100%;
   max-width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 20px 20%;
@@ -140,6 +185,9 @@ body {
 .Sek{
   grid-area: 1 / 2 / 2 / 4;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Prim input, .edit input {
   color: #fff;
@@ -153,6 +201,10 @@ body {
   border: none;
   border-bottom: 2px solid white;
   background-color: rgba(0, 0, 0, 0);
+  outline: none;
+}
+.left{
+  margin-left: 10px;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -161,11 +213,10 @@ input:-webkit-autofill:active  {
   transition: background-color 5000s;
   -webkit-text-fill-color: rgb(255, 255, 255) !important;
 }
-
 .Prim #Alarmieren{
   cursor: pointer;
   position: relative;
-
+  outline: none;
   background: transparent;
   color: white;
   border: 2px solid white;
@@ -173,6 +224,8 @@ input:-webkit-autofill:active  {
   min-height: 40%;
   max-height: 90%;
   width: 90%;
+  padding-top: 5px;
+  padding-bottom: 5px;
   text-transform: uppercase;
   display: inline-block;
   -webkit-transition: all 0.4s;
@@ -183,7 +236,7 @@ input:-webkit-autofill:active  {
 }
 
 #Alarmieren:hover{
-  border: 2px solid white;
+  border: 2px solid #7b0023;
 }
 
 #Alarmieren:after {
@@ -211,11 +264,14 @@ input:-webkit-autofill:active  {
   min-height: 40%;
   max-height: 60%;
   width: 90%;
+  padding-top: 5px;
+  padding-bottom: 5px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0);
   border: 2px solid #239b56;
   position: relative;
   font-size: 1.5vm;
+  outline: none;
 }
 
 #Anlegen:hover{
@@ -224,7 +280,7 @@ input:-webkit-autofill:active  {
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
-  border: 2px solid  white;
+  border: 2px solid  #056f00;
 }
 
 .Anlegen, .Alarmierung{
@@ -354,6 +410,8 @@ input:-webkit-autofill:active  {
   background-color: rgba(0, 0, 0, 0);
   outline: none;
   border: none;
+  transition: all ease 400ms;
+  border-radius: 3px;
 }
 .iconButton:hover{
   cursor: pointer;

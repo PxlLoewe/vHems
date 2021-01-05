@@ -9,8 +9,12 @@ $stmt->bind_param('i', $user_id);
 $stmt->execute();
 $user = $stmt->get_result();
 
-$res = $db->query("SELECT * FROM `Website-settings` WHERE `menuPunkt` = 'Werbung' AND `wert` = '1'");
+$res = $db->query("SELECT wert FROM `Website-settings` WHERE `menuPunkt` = 'Werbung' AND `wert` = '1'");
 $add = $res->num_rows;
+
+$res = $db->query("SELECT wert FROM `Website-settings` WHERE `menuPunkt` = 'version'");
+$version = $res->fetch_object();
+$version = $version->wert;
 
 if ($user->num_rows == 0) {
     session_destroy();
@@ -43,7 +47,7 @@ if ($user->num_rows == 0) {
     </div>
 </body> <?php
         if (!isset($_GET['page'])) {
-            $_GET['page'] = "select";
+            $_GET['page'] = "home";
         }
         require('subpages/' . $_GET['page'] . '.php');
         ?>

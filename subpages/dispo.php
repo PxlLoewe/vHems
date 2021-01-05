@@ -1,15 +1,22 @@
 <link rel="stylesheet" href="/subpages/css/dispo.css">
+<link rel="stylesheet" href="/subpages/css/notify.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="/subpages/JS/notify.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
 <script type="text/JavaScript" src=" https://MomentJS.com/downloads/moment.js"></script>
 <title>Disponieren</title>
 
+<?php
+
+if(!$_SESSION['userID']){
+    exit();
+}
+?>
 <body>
     <div class="grid">
         <div class="forms">
             <div class="edit" id="edit">
-                <div class="Datum"></div>
+                <div class="Datum" id="editID"></div>
                 <div class="Uhrzeit"></div>
                 <div class="Autragsnummer"><input type="text" placeholder="Auftragsnummer" id="Auftragsnummer2"></div>
                 <div class="Objekt"><input maxlength="7" type="text" placeholder="Objekt" id="Objekt2"></div>
@@ -33,12 +40,12 @@
                         <?php } ?>
                         ?>
                     </select>
-                    <div class="Anlegen"><button onclick="editPrimMission()" id="Anlegen">Alarmierung hinzufügen</button></div>
                 </div>
+                <div class="save"><button onclick="editPrimMission()" id="Anlegen">Alarmierung hinzufügen</button></div>
             </div>
             <div class="head">
-                <button id="switchPrim">Primäreinsätze</button>
-                <button id="switchSek">Sekundäreinsätze</button>
+                <button class="headPrim active" id="switchPrim">Primäreinsätze</button>
+                <button class="headSek" id="switchSek">Sekundäreinsätze</button>
             </div>
 
             <div id="body" class="switch">
@@ -46,15 +53,15 @@
                     <div class="Datum"></div>
                     <div class="Uhrzeit"></div>
                     <div class="Autragsnummer"><input type="text" placeholder="Auftragsnummer" id="Auftragsnummer"></div>
-                    <div class="Objekt"><input maxlength="7" type="text" placeholder="Objekt" id="Objekt"></div>
+                    <div class="Objekt left"><input maxlength="7" type="text" placeholder="Objekt" id="Objekt"></div>
                     <div class="Etage"><input maxlength="2" type="text" placeholder="Etage" id="Etage"></div>
-                    <div class="Straße"><input maxlength="20" type="text" placeholder="Straße" id="Straße"></div>
+                    <div class="Straße left"><input maxlength="20" type="text" placeholder="Straße" id="Straße"></div>
                     <div class="HNR"><input maxlength="3" type="text" placeholder="HNR" id="HNR"></div>
-                    <div class="Ort"><input maxlength="10" type="text" placeholder="Ort" id="Ort"></div>
+                    <div class="Ort left"><input maxlength="10" type="text" placeholder="Ort" id="Ort"></div>
                     <div class="Ortsteil"><input maxlength="20" type="text" placeholder="Ortsteil" id="Ortsteil"></div>
                     <div class="Patient"></div>
                     <div class="Anrufer"></div>
-                    <div class="Stichwort"><input maxlength="22" type="text" placeholder="Stichwort" id="Stichwort"></div>
+                    <div class="Stichwort left"><input maxlength="22" type="text" placeholder="Stichwort" id="Stichwort"></div>
                     <div class="Infos"><input maxlength="150" type="text" placeholder="Einsatzinformation" id="Einsatzinformation"></div>
                     <div class="Zusatz"></div>
 
@@ -75,7 +82,7 @@
 
                 </div>
                 <div class="Sek">
-                    Sek
+                    <h1>W.I.P.</h1>
                 </div>
             </div>
         </div>
@@ -171,7 +178,7 @@
         }
         for (var i = 0; i < data.angelegte.length; i++) {
 
-            angelegteTabelle.innerHTML += `<tr><td>${data.angelegte[i].station}</td><td>${data.angelegte[i].ort}</td><td>${data.angelegte[i].sw}</td><td><button class="iconButton" onclick="sendAlarmierungByID(${data.angelegte[i].id})"><span class="material-icons">notifications</span></button><button class="iconButton" onclick="deleteAlarmierungByID(${data.angelegte[i].id})"><span class="material-icons">delete</span></button><button class="iconButton" onclick="showEditDiv(${data.angelegte[i].id})"><span class="material-icons">edit</span></button></td></tr>`
+            angelegteTabelle.innerHTML += `<tr><td>${data.angelegte[i].station}</td><td>${data.angelegte[i].ort}</td><td>${data.angelegte[i].sw}</td><td><button class="iconButton" onclick="sendAlarmierungByID(${data.angelegte[i].id})"><span style="color: rgb(255, 193, 7);" class="material-icons">notifications</span></button><button class="iconButton" onclick="deleteAlarmierungByID(${data.angelegte[i].id})"><span style="color: #C70039;" class="material-icons">delete</span></button><button class="iconButton" onclick="showEditDiv(${data.angelegte[i].id})"><span style="color: #5065A1;" class="material-icons">edit</span></button></td></tr>`
 
         }
         while (laufendeTabelle.rows.length > 2) {
@@ -179,7 +186,7 @@
         }
         for (var i = 0; i < data.laufende.length; i++) {
 
-            laufendeTabelle.innerHTML += `<tr><td>${data.laufende[i].station}</td><td>${data.laufende[i].o}</td><td>${data.laufende[i].sw}</td><td>${data.laufende[i].time}</td><td><button class="iconButton" onclick="archiveMission(${data.laufende[i].id})"><span class="material-icons">archive</span></button></td></tr>`
+            laufendeTabelle.innerHTML += `<tr><td>${data.laufende[i].station}</td><td>${data.laufende[i].o}</td><td>${data.laufende[i].sw}</td><td>${data.laufende[i].time}</td><td><button class="iconButton" onclick="archiveMission(${data.laufende[i].id})"><span style="color: #8E725E;" class="material-icons">archive</span></button></td></tr>`
 
         }
 
@@ -194,6 +201,9 @@
             notifi.show(data.message, "green")
             socket.emit("reqData")
         } else {
+            notifi.show(data.message, data.color)
+        }
+        if(data.color){
             notifi.show(data.message, data.color)
         }
 
@@ -217,7 +227,6 @@
     }
 
     function addPrimMission(fahrzeug) {
-        console.log(document.getElementById('selectFahrzeuge').value)
         socket.emit("addPrimMission", {
             fahrzeug: fahrzeug,
             id: "wip",
@@ -233,10 +242,10 @@
         })
     }
 
-    function editPrimMission(id) {
+    function editPrimMission() {
         socket.emit("editPrimMission", {
-            fahrzeug: fahrzeug,
-            id: "wip",
+            fahrzeug: document.getElementById('selectFahrzeuge2').value,
+            id: document.getElementById("editID").innerText,
             an: document.getElementById("Auftragsnummer2").value,
             obj: document.getElementById("Objekt2").value,
             et: document.getElementById("Etage2").value,
@@ -246,7 +255,6 @@
             ot: document.getElementById("Ortsteil2").value,
             sw: document.getElementById("Stichwort2").value,
             ei: document.getElementById("Einsatzinformation2").value,
-            zu: document.getElementById("Zusatzinformation2").value,
         })
         document.getElementById("edit").classList.remove("show")
 
@@ -256,6 +264,7 @@
 
     function showEditDiv(id) {
         document.getElementById("edit").classList.add("show")
+        document.getElementById("editID").innerText = id
         socket.emit("getMissionInfo", id)
     }
     socket.on("emitMissionInfo", data => {
@@ -272,11 +281,19 @@
 
 
     const body = document.getElementById("body")
+    const primButton = document.getElementById("switchPrim")
+    const SekButton = document.getElementById("switchSek")
+
     document.getElementById("switchPrim").addEventListener("click", () => {
         body.classList.remove("dasfas")
+        primButton.classList.add("active")
+        SekButton.classList.remove("active")
+
     })
     document.getElementById("switchSek").addEventListener("click", () => {
         body.classList.add("dasfas")
+        primButton.classList.remove("active")
+        SekButton.classList.add("active")
     })
 
     function sendAlarmierungByID(id) {

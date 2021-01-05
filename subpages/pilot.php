@@ -3,6 +3,9 @@ $db = new mysqli("localhost","login","Ighids11","vHEMS");
 if($db->connect_error){
     echo $db->connect_error;
 }
+if(!$_SESSION['userID']){
+    exit();
+}
 ?>
 
 <html>
@@ -10,6 +13,7 @@ if($db->connect_error){
 <head>
     <link rel="stylesheet" href="/subpages/css/pilot.css">
     <script src="/subpages/JS/notify.js"></script>
+    <link rel="stylesheet" href="/subpages/css/notify.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>

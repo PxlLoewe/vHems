@@ -16,4 +16,24 @@ if (isset($_SESSION['userID'])):
   else:
   require_once 'anmelden.php';
 endif;
+} else {
+  ?> 
+  <style>
+    body {
+      background-color:  #10161f;
+    }
+    h1 {
+      margin: auto;
+      width: 80%;
+      height: 20%;
+      font-family: sans-serif;
+      text-align: center;
+      color: #fff;
+    }
+  </style>
+  <body>
+    <h1>Die Seite ist momentan noch in der Entwicklung und ist daher nur online, wenn an ihr gearbeitet Wird! <br><br> GZ, Johannes</h1>
+  </body>
+  <?php
 }
+?>

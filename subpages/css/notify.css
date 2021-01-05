@@ -1,0 +1,31 @@
+.notifi {
+    z-index: 11;
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 400;
+    padding: 6px;
+    font-family: sans-serif;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color:#FFC107;
+    visibility: hidden;
+    opacity: 0;
+    transition: 200ms;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+  }
+  .notifi-green {
+    background-color: #056f00;
+  }
+  .notifi-red {
+    background-color:#C70039;
+  }
+  .notifi--visible {
+    top: 100px;
+    opacity: 1;
+    visibility: visible;
+  }

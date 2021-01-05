@@ -16,7 +16,7 @@ const notifi = {
         }
         this.hideTimeout = setTimeout(() => {
             this.el.classList.remove("notifi--visible");
-        }, 3000);
+        }, 10000);
     }
 };
 

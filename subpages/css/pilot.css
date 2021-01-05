@@ -163,34 +163,6 @@
   border: none;
   margin-bottom: 5px;
 }
-.notifi {
-  z-index: 11;
-  position: fixed;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 400;
-  padding: 6px;
-  font-family: sans-serif;
-  border: 1px solid #aaaaaa;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-color: rgb(255, 255, 0);
-  visibility: hidden;
-  opacity: 0;
-  transition: 200ms;
-}
-.notifi-green {
-  background-color: rgba(62, 219, 0, 1);
-}
-.notifi-red {
-  background-color: rgba(197, 52, 0, 1);
-}
-.notifi--visible {
-  top: 100px;
-  opacity: 1;
-  visibility: visible;
-}
 .melder {
   grid-area: 1 / 1 / 2 / 2;
   width: 100%;
